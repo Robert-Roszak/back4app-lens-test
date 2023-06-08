@@ -1,0 +1,19 @@
+@import '../../../styles/global.scss';
+
+.root {
+  padding-bottom: 50px;
+  .emptyCart {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .checkout {
+    .fullWidth {
+      width: 100%;
+    }
+
+    .txtAlignEnd {
+      text-align: end;
+    }
+  }
+}

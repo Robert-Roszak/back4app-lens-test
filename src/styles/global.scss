@@ -1,0 +1,23 @@
+@import "settings.scss";
+@import "normalize.scss";
+@import "~bootstrap/scss/bootstrap";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.root {
+  background-color: #bdc3c7;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}

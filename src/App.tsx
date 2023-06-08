@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { MainLayout } from './components/Layout/MainLayout/MainLayout';
+import { Homepage } from './components/Views/Homepage/Homepage';
+import { Cart } from './components/Views/Cart/Cart';
+import { Product } from './components/Views/Product/Product';
+import { Order } from './components/Views/Order/Order';
+import { NotFound } from './components/Views/NotFound/NotFound';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <MainLayout>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/product/:id' element={<Product />} />
+          <Route path='/orders/:id' element={<Order />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </MainLayout>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;
