@@ -38,11 +38,11 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-const NODE_ENV = process.env.NODE_ENV;
-console.log('RRTEST NODE_ENV: ' + NODE_ENV);
+const NODEENV = process.env.NODEENV;
+console.log('RRTEST NODEENV: ' + NODEENV);
 let dbUri = '';
-if (NODE_ENV === 'production') dbUri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@cluster0.gtv2z.mongodb.net/lensShop?retryWrites=true&w=majority`;
-else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/lensShoptest';
+if (NODEENV === 'production') dbUri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@cluster0.gtv2z.mongodb.net/lensShop?retryWrites=true&w=majority`;
+else if (NODEENV === 'test') dbUri = 'mongodb://localhost:27017/lensShoptest';
 else dbUri = 'mongodb://localhost:27017/lensShop';
 console.log('RRTEST dbUri: ' + dbUri);
 mongoose.set('strictQuery', true);
