@@ -5,10 +5,10 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import helmet from 'helmet';
 import MongoStore from 'connect-mongo';
+import 'dotenv/config';
 
 import productsRoutes from './routes/products.routes';
 import orderRoutes from './routes/orders.routes';
-
 
 const app:Application = express();
 
@@ -38,11 +38,13 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-const NODEENV = process.env.NODEENV;
-console.log('RRTEST NODEENV: ' + NODEENV);
+const NODE_ENV = process.env.NODE_ENV;
+console.log('RRTEST NODE_ENV: ' + NODE_ENV);
+console.log('RRTEST process.env: ' + process.env);
+console.log('RRTEST process.env.DBUSER: ' + process.env.DBUSER);
 let dbUri = '';
-if (NODEENV === 'production') dbUri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@cluster0.gtv2z.mongodb.net/lensShop?retryWrites=true&w=majority`;
-else if (NODEENV === 'test') dbUri = 'mongodb://localhost:27017/lensShoptest';
+if (NODE_ENV === 'production') dbUri = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@cluster0.gtv2z.mongodb.net/lensShop?retryWrites=true&w=majority`;
+else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/lensShoptest';
 else dbUri = 'mongodb://localhost:27017/lensShop';
 console.log('RRTEST dbUri: ' + dbUri);
 mongoose.set('strictQuery', true);
