@@ -1,4 +1,5 @@
 import express, { Request, Response, Application, NextFunction } from 'express';
+import Parse from 'parse/node';
 import cors from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
@@ -38,6 +39,12 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
+Parse.Cloud.job('getVariable', (request) => {
+  console.log(request);
+  const test = process.env.NODE_ENV;
+  console.log('RRTEST parse: ' + test);
+});
+
 const NODE_ENV = process.env.NODE_ENV;
 console.log('RRTEST NODE_ENV: ' + NODE_ENV);
 console.log('RRTEST process.env: ' + process.env);
