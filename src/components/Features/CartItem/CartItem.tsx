@@ -19,20 +19,18 @@ const Component: React.FC<CartItemProps> = ({ cart, showCheckout }) => {
   const { data: products = [] } = useFetchProductsQuery();
   
   const handleQuantity = (quantity: number, item: CartModel) => {
-    let result = 0;
-    result = item.quantity + quantity;
+    const result = item.quantity + quantity;
     const inStock = handleMaxQuantity(item);
   
     if (result > 0 && result <= inStock) dispatch(changeQuantity({quantity, id: item._id}));
     else if (result > inStock) alert(`Only ${inStock} products in stock`);
-    else if (isNaN(quantity)) alert('Quantity must me a number');
+    else if (isNaN(quantity)) alert('Quantity must be a number');
     else alert('To remove item click trash icon');
   };
-  
+
   const handleMaxQuantity = (item: CartModel) => {
-    let inStock = 0;
-    products.some(product => product._id === item._id ? inStock = product.inStock : inStock);
-    return inStock;
+    const foundProduct = products.find(product => product._id === item._id);
+    return foundProduct ? foundProduct.inStock : 0;
   };
   
   return (
